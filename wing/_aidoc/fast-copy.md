@@ -6,9 +6,9 @@
 
 使用 https://github.com/cockroachdb/pebble 存储文件的元数据， 数据文件 `filehash`
 
-* `K:MD5:{md5_binary}` 以文件md5二进制作为主key， value=`name={xxx}|size=xxx|md5={md5_binary}|sha1={sha1_binary}` 元数据
+* `K:MD5:{md5_binary}` 以文件md5二进制作为主key， value=`name={xxx}|size={xxx}|md5={md5_binary}|sha1={sha1_binary}|gcid={gcid_binary}` 元数据
 * `K:SHA1:{sha1_binary}` 以文件sha1二进制作为key， value={md5_binary}
-* `K:GCID:{gcid_binary}` ， value={gcid_binary}
+* `K:GCID:{gcid_binary}` ， value={md5_binary}
 * `C:{FILE_FULLPATH}|{FILE_SIZE}`： 保存本地文件的信息，避免重复计算， value={md5_binary}
 
 通过多次查找找到文件元信息
@@ -18,9 +18,31 @@
 ### 计算文件hash
 
 在 @cmd 文件夹下 创建一个hash命令:
+* 主要逻辑写在 @wing 文件夹下（后面会复用），@cmd 中只是入口
 * 输入一个文件路径，自动计算文件元数据
 * 输入一个文件夹路径，自动计算文件夹內所有文件的元数据，并保存到数据库
 * 注意给元数据添加一个函数输出人类可读的信息，比如md5_binary显示为md5_hex
 * `--json output.json` 表示将结果输出到一个json文件
 
+### 辅助方法
 
+在 @wing 下写几个辅助方法
+
+* 通过 FILE_FULLPATH、FILE_SIZE 查找元数据
+* 通过各hash值，查询元数据
+* 批量查
+
+
+---
+
+测试数据
+
+```
+--- 【官方教材】2021-初级会计实务.pdf ---
+Name: 【官方教材】2021-初级会计实务.pdf
+Size: 57453152
+MD5: f67a7cf3ed09b8c7825fb97f03a42397
+SHA1: 943355a3a40ed5cb2a491c8cc40e49a6f7bde993
+GCID: 938c4caa71cc404671cd06f9467ea4ea00423955
+
+```

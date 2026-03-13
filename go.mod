@@ -91,6 +91,7 @@ require (
 require (
 	cloud.google.com/go/compute/metadata v0.9.0 // indirect
 	github.com/Azure/azure-sdk-for-go/sdk/internal v1.11.1 // indirect
+	github.com/DataDog/zstd v1.4.5 // indirect
 	github.com/ProtonMail/bcrypt v0.0.0-20211005172633-e235017c1baf // indirect
 	github.com/ProtonMail/gluon v0.17.1-0.20230724134000-308be39be96e // indirect
 	github.com/ProtonMail/go-mime v0.0.0-20230322103455-7d82a3887f2f // indirect
@@ -102,12 +103,20 @@ require (
 	github.com/charmbracelet/colorprofile v0.2.3-0.20250311203215-f60798e515dc // indirect
 	github.com/charmbracelet/x/cellbuf v0.0.13-0.20250311204145-2c3ea96c31dd // indirect
 	github.com/cloudsoda/sddl v0.0.0-20250224235906-926454e91efc // indirect
+	github.com/cockroachdb/errors v1.11.3 // indirect
+	github.com/cockroachdb/fifo v0.0.0-20240606204812-0bbfbd93a7ce // indirect
+	github.com/cockroachdb/logtags v0.0.0-20230118201751-21c54148d20b // indirect
+	github.com/cockroachdb/pebble v1.1.4 // indirect
+	github.com/cockroachdb/redact v1.1.5 // indirect
+	github.com/cockroachdb/tokenbucket v0.0.0-20230807174530-cc333fc44b06 // indirect
 	github.com/coreos/go-systemd/v22 v22.5.0 // indirect
 	github.com/cronokirby/saferith v0.33.0 // indirect
 	github.com/ebitengine/purego v0.8.4 // indirect
 	github.com/emersion/go-message v0.18.2 // indirect
 	github.com/emersion/go-vcard v0.0.0-20241024213814-c9703dde27ff // indirect
 	github.com/geoffgarside/ber v1.2.0 // indirect
+	github.com/getsentry/sentry-go v0.27.0 // indirect
+	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
 	github.com/hashicorp/go-uuid v1.0.3 // indirect
 	github.com/jcmturner/aescts/v2 v2.0.0 // indirect
@@ -116,6 +125,8 @@ require (
 	github.com/jcmturner/goidentity/v6 v6.0.1 // indirect
 	github.com/jcmturner/gokrb5/v8 v8.4.4 // indirect
 	github.com/jcmturner/rpc/v2 v2.0.3 // indirect
+	github.com/kr/pretty v0.3.1 // indirect
+	github.com/kr/text v0.2.0 // indirect
 	github.com/lanrat/extsort v1.0.2 // indirect
 	github.com/mikelolasagasti/xz v1.0.1 // indirect
 	github.com/minio/minlz v1.0.0 // indirect
@@ -123,6 +134,7 @@ require (
 	github.com/munnerz/goautoneg v0.0.0-20191010083416-a7dc8b61c822 // indirect
 	github.com/quic-go/qpack v0.5.1 // indirect
 	github.com/relvacode/iso8601 v1.6.0 // indirect
+	github.com/rogpeppe/go-internal v1.14.1 // indirect
 	github.com/xo/terminfo v0.0.0-20220910002029-abceb7e1c41e // indirect
 	go.uber.org/mock v0.5.0 // indirect
 	golang.org/x/exp v0.0.0-20250606033433-dcc06ee1d476 // indirect

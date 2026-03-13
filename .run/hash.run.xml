@@ -1,0 +1,12 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="hash" type="GoApplicationRunConfiguration" factoryName="Go Application">
+    <module name="OpenList" />
+    <working_directory value="$PROJECT_DIR$" />
+    <parameters value="hash &quot;E:\【官方教材】2021-初级会计实务.pdf&quot;" />
+    <kind value="FILE" />
+    <package value="github.com/OpenListTeam/OpenList/v4" />
+    <directory value="$PROJECT_DIR$" />
+    <filePath value="$PROJECT_DIR$/main.go" />
+    <method v="2" />
+  </configuration>
+</component>

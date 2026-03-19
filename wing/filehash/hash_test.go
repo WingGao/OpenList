@@ -21,7 +21,7 @@ func TestCalculateMetadata(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	m, err := CalculateMetadata(path)
+	m, err := CalculateHashMetadata(path)
 	assert.NoError(t, err)
 	assert.NotNil(t, m)
 	assert.Equal(t, "test.txt", m.Name)

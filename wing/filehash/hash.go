@@ -10,8 +10,8 @@ import (
 	hashutil "github.com/OpenListTeam/OpenList/v4/pkg/utils/hash"
 )
 
-// CalculateMetadata calculates the metadata for a file.
-func CalculateMetadata(path string) (*FileMetadata, error) {
+// CalculateHashMetadata calculates the metadata for a file.
+func CalculateHashMetadata(path string) (*FileHashMetadata, error) {
 	f, err := os.Open(path)
 	if err != nil {
 		return nil, err
@@ -36,7 +36,7 @@ func CalculateMetadata(path string) (*FileMetadata, error) {
 		return nil, err
 	}
 
-	return &FileMetadata{
+	return &FileHashMetadata{
 		Name: filepath.Base(path),
 		Size: info.Size(),
 		MD5:  hMD5.Sum(nil),

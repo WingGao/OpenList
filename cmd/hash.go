@@ -33,7 +33,7 @@ var HashCmd = &cobra.Command{
 			logrus.Fatalf("failed to get absolute path: %v", err)
 		}
 
-		var results []*filehash.FileMetadata
+		var results []*filehash.FileHashMetadata
 
 		err = filepath.Walk(targetPath, func(path string, info os.FileInfo, err error) error {
 			if err != nil {
@@ -53,7 +53,7 @@ var HashCmd = &cobra.Command{
 			}
 
 			logrus.Infof("Calculating hash for: %s", path)
-			m, err := filehash.CalculateMetadata(path)
+			m, err := filehash.CalculateHashMetadata(path)
 			if err != nil {
 				logrus.Errorf("failed to calculate metadata for %s: %v", path, err)
 				return nil

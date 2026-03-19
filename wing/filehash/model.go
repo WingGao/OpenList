@@ -6,8 +6,8 @@ import (
 	"strings"
 )
 
-// FileMetadata represents the metadata of a file.
-type FileMetadata struct {
+// FileHashMetadata represents the metadata of a file.
+type FileHashMetadata struct {
 	Name string `json:"name"`
 	Size int64  `json:"size"`
 	MD5  []byte `json:"md5"`
@@ -16,15 +16,15 @@ type FileMetadata struct {
 }
 
 // Serialize serializes the metadata to a byte slice.
-func (m *FileMetadata) Serialize() []byte {
+func (m *FileHashMetadata) Serialize() []byte {
 	return []byte(fmt.Sprintf("name=%s|size=%d|md5=%x|sha1=%x|gcid=%x",
 		m.Name, m.Size, m.MD5, m.SHA1, m.GCID))
 }
 
 // DeserializeMetadata deserializes the metadata from a byte slice.
-func DeserializeMetadata(data []byte) (*FileMetadata, error) {
+func DeserializeMetadata(data []byte) (*FileHashMetadata, error) {
 	s := string(data)
-	m := &FileMetadata{}
+	m := &FileHashMetadata{}
 	parts := strings.Split(s, "|")
 	for _, part := range parts {
 		kv := strings.SplitN(part, "=", 2)
@@ -49,7 +49,7 @@ func DeserializeMetadata(data []byte) (*FileMetadata, error) {
 }
 
 // ToHumanReadable returns the metadata in a human-readable format.
-func (m *FileMetadata) ToHumanReadable() string {
+func (m *FileHashMetadata) ToHumanReadable() string {
 	return fmt.Sprintf("Name: %s\nSize: %d\nMD5: %x\nSHA1: %x\nGCID: %x",
 		m.Name, m.Size, m.MD5, m.SHA1, m.GCID)
 }

@@ -25,7 +25,7 @@ func setupTestDB(t *testing.T) {
 func TestStore(t *testing.T) {
 	setupTestDB(t)
 
-	m := &FileMetadata{
+	m := &FileHashMetadata{
 		Name: "test.txt",
 		Size: 100,
 		MD5:  []byte("md5hash"),

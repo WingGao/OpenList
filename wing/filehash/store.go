@@ -14,7 +14,7 @@ const (
 )
 
 // SaveMetadata saves the metadata to the database.
-func SaveMetadata(m *FileMetadata, path string) error {
+func SaveMetadata(m *FileHashMetadata, path string) error {
 	batch := db.NewBatch()
 	defer batch.Close()
 
@@ -50,7 +50,7 @@ func SaveMetadata(m *FileMetadata, path string) error {
 }
 
 // GetMetadataByMD5 retrieves metadata by MD5.
-func GetMetadataByMD5(md5 []byte) (*FileMetadata, error) {
+func GetMetadataByMD5(md5 []byte) (*FileHashMetadata, error) {
 	key := []byte(PrefixMD5 + string(md5))
 	val, closer, err := db.Get(key)
 	if err != nil {
@@ -62,7 +62,7 @@ func GetMetadataByMD5(md5 []byte) (*FileMetadata, error) {
 }
 
 // GetMetadataBySHA1 retrieves metadata by SHA1.
-func GetMetadataBySHA1(sha1 []byte) (*FileMetadata, error) {
+func GetMetadataBySHA1(sha1 []byte) (*FileHashMetadata, error) {
 	key := []byte(PrefixSHA1 + string(sha1))
 	md5, closer, err := db.Get(key)
 	if err != nil {
@@ -74,7 +74,7 @@ func GetMetadataBySHA1(sha1 []byte) (*FileMetadata, error) {
 }
 
 // GetMetadataByGCID retrieves metadata by GCID.
-func GetMetadataByGCID(gcid []byte) (*FileMetadata, error) {
+func GetMetadataByGCID(gcid []byte) (*FileHashMetadata, error) {
 	key := []byte(PrefixGCID + string(gcid))
 	md5, closer, err := db.Get(key)
 	if err != nil {
@@ -86,7 +86,7 @@ func GetMetadataByGCID(gcid []byte) (*FileMetadata, error) {
 }
 
 // GetMetadataByPath retrieves metadata by path and size.
-func GetMetadataByPath(path string, size int64) (*FileMetadata, error) {
+func GetMetadataByPath(path string, size int64) (*FileHashMetadata, error) {
 	key := []byte(fmt.Sprintf("%s%s|%d", PrefixPath, path, size))
 	md5, closer, err := db.Get(key)
 	if err != nil {

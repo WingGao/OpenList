@@ -1,5 +1,7 @@
 # 快传
 
+在
+
 添加一个快传interface
 ```go
 
@@ -9,7 +11,9 @@ type RapidUploader interface {
 }
 ```
 
-* 检查 @drivers 目录，查看哪些driver有快传功能，并汇总成表格
+* 检查 @drivers 目录，driver有快传功能:
+  * baidu_netdisk
+  * 
 * 将支持快传的driver，实现一下RapidUploader, 代码放在 `drivers/xxx/rapid.go`
 * 无需写测试
 * 在 @server/router.go `func _fs(g *gin.RouterGroup)` 中添加接口：

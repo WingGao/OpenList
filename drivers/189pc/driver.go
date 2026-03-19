@@ -332,7 +332,7 @@ func (y *Cloud189PC) Put(ctx context.Context, dstDir model.Obj, stream model.Fil
 
 	// 响应时间长,按需启用
 	if y.Addition.RapidUpload && !stream.IsForceStreamUpload() {
-		if newObj, err := y.RapidUpload(ctx, dstDir, stream, isFamily, overwrite); err == nil {
+		if newObj, err := y.RapidUploadOld(ctx, dstDir, stream, isFamily, overwrite); err == nil {
 			return newObj, nil
 		}
 	}

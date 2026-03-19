@@ -17,7 +17,7 @@ type Addition struct {
 	ClientID           string `json:"client_id" help:"Keep it empty if you don't have one"`
 	ClientSecret       string `json:"client_secret" help:"Keep it empty if you don't have one"`
 	RemoveWay          string `json:"remove_way" required:"true" type:"select" options:"trash,delete"`
-	RapidUpload        bool   `json:"rapid_upload" help:"If you enable this option, the file will be uploaded to the server first, so the progress will be incorrect"`
+	RapidUploadFlag    bool   `json:"rapid_upload" help:"If you enable this option, the file will be uploaded to the server first, so the progress will be incorrect"`
 	InternalUpload     bool   `json:"internal_upload" help:"If you are using Aliyun ECS is located in Beijing, you can turn it on to boost the upload speed"`
 	LIVPDownloadFormat string `json:"livp_download_format" type:"select" options:"jpeg,mov" default:"jpeg"`
 	AccessToken        string

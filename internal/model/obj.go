@@ -242,6 +242,16 @@ func (m ObjMask) GetObjMask() ObjMask {
 	return m
 }
 
+type FileHashMetadata struct {
+	Name      string `json:"name"`
+	Size      int64  `json:"size"`
+	MD5       []byte `json:"md5"`
+	SHA1      []byte `json:"sha1"`
+	SHA256    []byte `json:"sha256"`
+	GCID      []byte `json:"gcid"`
+	ProofCode string `json:"proof_code"`
+}
+
 const (
 	Virtual ObjMask = 1 << iota
 	NoRename

@@ -805,6 +805,56 @@ func GetDirectUploadInfo(ctx context.Context, tool string, storage driver.Driver
 	return info, nil
 }
 
+func RapidUpload(ctx context.Context, storage driver.Driver, dstDirPath string, hash model.FileHashMetadata) (model.Obj, error) {
+	if storage.Config().CheckStatus && storage.GetStorage().Status != WORK {
+		return nil, errors.WithMessagef(errs.StorageNotInit, "storage status: %s", storage.GetStorage().Status)
+	}
+	ru, ok := storage.(driver.RapidUploader)
+	if !ok {
+		return nil, errors.WithStack(errs.NotSupport)
+	}
+	dstDirPath = utils.FixAndCleanPath(dstDirPath)
+	if hash.Name != "" {
+		dstPath := stdpath.Join(dstDirPath, hash.Name)
+		fi, err := GetUnwrap(ctx, storage, dstPath)
+		if err == nil {
+			if storage.Config().NoOverwriteUpload {
+				return nil, errors.WithStack(errs.ObjectAlreadyExists)
+			}
+			// if size mismatch, we should not reuse it
+			if hash.Size > 0 && fi.GetSize() != hash.Size {
+				return nil, errors.Errorf("file size mismatch, existing: %d, expected: %d", fi.GetSize(), hash.Size)
+			}
+		}
+	}
+
+	err := MakeDir(ctx, storage, dstDirPath)
+	if err != nil {
+		return nil, errors.WithMessagef(err, "failed to make dir [%s]", dstDirPath)
+	}
+	parentDir, err := GetUnwrap(ctx, storage, dstDirPath)
+	if err != nil {
+		return nil, errors.WithMessagef(err, "failed to get dir [%s]", dstDirPath)
+	}
+	if model.ObjHasMask(parentDir, model.NoWrite) {
+		return nil, errors.WithStack(errs.PermissionDenied)
+	}
+
+	newObj, err := ru.RapidUpload(ctx, parentDir, hash)
+	if err == nil {
+		if !storage.Config().NoCache {
+			if cache, exist := Cache.dirCache.Get(Key(storage, dstDirPath)); exist {
+				newObj = wrapObjName(storage, newObj)
+				cache.UpdateObject(newObj.GetName(), newObj)
+			}
+		}
+		if ctx.Value(conf.SkipHookKey) == nil && needHandleObjsUpdateHook() {
+			go objsUpdateHook(context.WithoutCancel(ctx), storage, dstDirPath, false)
+		}
+	}
+	return newObj, errors.WithStack(err)
+}
+
 func objsUpdateHook(ctx context.Context, storage driver.Driver, dirPath string, recursive bool) {
 	files, err := List(ctx, storage, dirPath, model.ListArgs{SkipHook: true})
 	if err != nil {

@@ -117,3 +117,11 @@ func getDirectUploadInfo(ctx context.Context, tool, dstDirPath, dstName string, 
 	}
 	return op.GetDirectUploadInfo(ctx, tool, storage, dstDirActualPath, dstName, fileSize)
 }
+
+func RapidUpload(ctx context.Context, dstDirPath string, hash model.FileHashMetadata) (model.Obj, error) {
+	storage, dstDirActualPath, err := op.GetStorageAndActualPath(dstDirPath)
+	if err != nil {
+		return nil, errors.WithMessage(err, "failed get storage")
+	}
+	return op.RapidUpload(ctx, storage, dstDirActualPath, hash)
+}

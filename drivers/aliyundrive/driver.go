@@ -191,7 +191,7 @@ func (d *AliDrive) Put(ctx context.Context, dstDir model.Obj, streamer model.Fil
 	if fileStream, ok := file.Reader.(*stream.FileStream); ok {
 		localFile, _ = fileStream.Reader.(*os.File)
 	}
-	if d.RapidUpload {
+	if d.RapidUploadFlag {
 		buf := bytes.NewBuffer(make([]byte, 0, 1024))
 		_, err := utils.CopyWithBufferN(buf, file, 1024)
 		if err != nil {
@@ -226,7 +226,7 @@ func (d *AliDrive) Put(ctx context.Context, dstDir model.Obj, streamer model.Fil
 		return err
 	}
 
-	if d.RapidUpload && e.Code == "PreHashMatched" {
+	if d.RapidUploadFlag && e.Code == "PreHashMatched" {
 		delete(reqBody, "pre_hash")
 		h := sha1.New()
 		if localFile != nil {

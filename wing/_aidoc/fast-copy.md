@@ -31,18 +31,3 @@
 * 通过 FILE_FULLPATH、FILE_SIZE 查找元数据
 * 通过各hash值，查询元数据
 * 批量查
-
-
----
-
-测试数据
-
-```
---- 【官方教材】2021-初级会计实务.pdf ---
-Name: 【官方教材】2021-初级会计实务.pdf
-Size: 57453152
-MD5: f67a7cf3ed09b8c7825fb97f03a42397
-SHA1: 943355a3a40ed5cb2a491c8cc40e49a6f7bde993
-GCID: 938c4caa71cc404671cd06f9467ea4ea00423955
-
-```

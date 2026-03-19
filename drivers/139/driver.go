@@ -685,7 +685,7 @@ func (d *Yun139) Put(ctx context.Context, dstDir model.Obj, stream model.FileStr
 		}
 
 		// 判断文件是否支持快传
-		// resp.Data.RapidUpload: true 支持快传，但此处直接检测是否返回分片的上传地址
+		// resp.Data.RapidUploadOld: true 支持快传，但此处直接检测是否返回分片的上传地址
 		// 快传的情况下同样需要手动处理冲突
 		if resp.Data.PartInfos != nil {
 			// Progress

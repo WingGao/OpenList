@@ -353,7 +353,7 @@ func (y *Cloud189TV) keepAlive() {
 	}
 }
 
-func (y *Cloud189TV) RapidUpload(ctx context.Context, dstDir model.Obj, stream model.FileStreamer, isFamily bool, overwrite bool) (model.Obj, error) {
+func (y *Cloud189TV) RapidUploadOld(ctx context.Context, dstDir model.Obj, stream model.FileStreamer, isFamily bool, overwrite bool) (model.Obj, error) {
 	fileMd5 := stream.GetHash().GetHash(utils.MD5)
 	if len(fileMd5) < utils.MD5.Width {
 		return nil, errors.New("invalid hash")

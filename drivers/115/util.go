@@ -183,6 +183,9 @@ func (d *Pan115) rapidUpload(fileSize int64, fileName, dirID, preID, fileID stri
 		}
 		if result.Status == 7 {
 			// Update signKey & signVal
+			if stream == nil {
+				return nil, errors.New("rapid upload check required sign_key, but stream is nil")
+			}
 			signKey = result.SignKey
 			signVal, err = UploadDigestRange(stream, result.SignCheck)
 			if err != nil {

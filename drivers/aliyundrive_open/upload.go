@@ -164,7 +164,7 @@ func (d *AliyundriveOpen) upload(ctx context.Context, dstDir model.Obj, stream m
 	count := int(math.Ceil(float64(stream.GetSize()) / float64(partSize)))
 	createData["part_info_list"] = makePartInfos(count)
 	// rapid upload
-	rapidUpload := !stream.IsForceStreamUpload() && stream.GetSize() > 100*utils.KB && d.RapidUpload
+	rapidUpload := !stream.IsForceStreamUpload() && stream.GetSize() > 100*utils.KB && d.RapidUploadFlag
 	if rapidUpload {
 		log.Debugf("[aliyundrive_open] start cal pre_hash")
 		// read 1024 bytes to calculate pre hash

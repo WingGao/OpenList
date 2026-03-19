@@ -226,3 +226,33 @@ func FsForm(c *gin.Context) {
 		"task": getTaskInfo(t),
 	})
 }
+
+func FsRapidUpload(c *gin.Context) {
+	path := c.GetHeader("File-Path")
+	path, err := url.PathUnescape(path)
+	if err != nil {
+		common.ErrorResp(c, err, 400)
+		return
+	}
+	user := c.Request.Context().Value(conf.UserKey).(*model.User)
+	path, err = user.JoinPath(path)
+	if err != nil {
+		common.ErrorResp(c, err, 403)
+		return
+	}
+	var req model.FileHashMetadata
+	if err := c.ShouldBindJSON(&req); err != nil {
+		common.ErrorResp(c, err, 400)
+		return
+	}
+	dir, name := stdpath.Split(path)
+	if req.Name == "" {
+		req.Name = name
+	}
+	obj, err := fs.RapidUpload(c.Request.Context(), dir, req)
+	if err != nil {
+		common.ErrorResp(c, err, 500)
+		return
+	}
+	common.SuccessResp(c, obj)
+}

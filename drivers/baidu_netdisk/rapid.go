@@ -2,7 +2,6 @@ package baidu_netdisk
 
 import (
 	"context"
-	"encoding/hex"
 	stdpath "path"
 
 	"github.com/OpenListTeam/OpenList/v4/internal/model"
@@ -10,8 +9,8 @@ import (
 	"github.com/pkg/errors"
 )
 
-func (d *BaiduNetdisk) RapidUpload(ctx context.Context, dstDir model.Obj, hash model.FileHashMetadata) (model.Obj, error) {
-	contentMd5 := hex.EncodeToString(hash.MD5)
+func (d *BaiduNetdisk) RapidUpload(ctx context.Context, dstDir model.Obj, hash model.FileHashMetadataReq) (model.Obj, error) {
+	contentMd5 := hash.MD5
 	if len(contentMd5) == 0 {
 		return nil, errors.New("invalid hash")
 	}

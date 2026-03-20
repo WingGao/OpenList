@@ -10,7 +10,7 @@ import (
 	"github.com/pkg/errors"
 )
 
-func (d *AliDrive) RapidUpload(ctx context.Context, dstDir model.Obj, hash model.FileHashMetadata) (model.Obj, error) {
+func (d *AliDrive) RapidUpload(ctx context.Context, dstDir model.Obj, hash model.FileHashMetadataReq) (model.Obj, error) {
 	if hash.ProofCode == "" {
 		return nil, errors.New("proof_code is required for aliyundrive rapid upload")
 	}

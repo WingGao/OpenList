@@ -18,3 +18,13 @@ func (p *PageReq) Validate() {
 		p.PerPage = MaxInt
 	}
 }
+
+type FileHashMetadataReq struct {
+	Name      string `json:"name"`
+	Size      int64  `json:"size"`
+	MD5       string `json:"md5"`
+	SHA1      []byte `json:"sha1"`
+	SHA256    []byte `json:"sha256"`
+	GCID      []byte `json:"gcid"`
+	ProofCode string `json:"proof_code"`
+}

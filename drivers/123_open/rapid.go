@@ -8,7 +8,7 @@ import (
 	"github.com/OpenListTeam/OpenList/v4/internal/model"
 )
 
-func (d *Open123) RapidUpload(ctx context.Context, dstDir model.Obj, hash model.FileHashMetadata) (model.Obj, error) {
+func (d *Open123) RapidUpload(ctx context.Context, dstDir model.Obj, hash model.FileHashMetadataReq) (model.Obj, error) {
 	parentID, err := strconv.ParseInt(dstDir.GetID(), 10, 64)
 	if err != nil {
 		return nil, err

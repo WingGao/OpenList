@@ -12,7 +12,7 @@ import (
 )
 
 // TODO 有bug
-func (d *PikPak) RapidUpload(ctx context.Context, dstDir model.Obj, hash model.FileHashMetadata) (model.Obj, error) {
+func (d *PikPak) RapidUpload(ctx context.Context, dstDir model.Obj, hash model.FileHashMetadataReq) (model.Obj, error) {
 	if len(hash.GCID) == 0 {
 		return nil, errors.New("gcid is required for pikpak rapid upload")
 	}

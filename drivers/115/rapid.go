@@ -9,7 +9,7 @@ import (
 	"github.com/OpenListTeam/OpenList/v4/internal/model"
 )
 
-func (d *Pan115) RapidUpload(ctx context.Context, dstDir model.Obj, hash model.FileHashMetadata) (model.Obj, error) {
+func (d *Pan115) RapidUpload(ctx context.Context, dstDir model.Obj, hash model.FileHashMetadataReq) (model.Obj, error) {
 	if err := d.WaitLimit(ctx); err != nil {
 		return nil, err
 	}

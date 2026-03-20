@@ -805,7 +805,7 @@ func GetDirectUploadInfo(ctx context.Context, tool string, storage driver.Driver
 	return info, nil
 }
 
-func RapidUpload(ctx context.Context, storage driver.Driver, dstDirPath string, hash model.FileHashMetadata) (model.Obj, error) {
+func RapidUpload(ctx context.Context, storage driver.Driver, dstDirPath string, hash model.FileHashMetadataReq) (model.Obj, error) {
 	if storage.Config().CheckStatus && storage.GetStorage().Status != WORK {
 		return nil, errors.WithMessagef(errs.StorageNotInit, "storage status: %s", storage.GetStorage().Status)
 	}

@@ -221,5 +221,5 @@ type DirectUploader interface {
 
 type RapidUploader interface {
 	// RapidUpload performs a rapid upload operation using file hash metadata
-	RapidUpload(ctx context.Context, dstDir model.Obj, hash model.FileHashMetadata) (model.Obj, error)
+	RapidUpload(ctx context.Context, dstDir model.Obj, hash model.FileHashMetadataReq) (model.Obj, error)
 }

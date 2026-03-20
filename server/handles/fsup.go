@@ -240,7 +240,7 @@ func FsRapidUpload(c *gin.Context) {
 		common.ErrorResp(c, err, 403)
 		return
 	}
-	var req model.FileHashMetadata
+	var req model.FileHashMetadataReq
 	if err := c.ShouldBindJSON(&req); err != nil {
 		common.ErrorResp(c, err, 400)
 		return

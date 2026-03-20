@@ -12,7 +12,7 @@ import (
 )
 
 // TODO: 有bug
-func (d *QuarkOpen) RapidUpload(ctx context.Context, dstDir model.Obj, hash model.FileHashMetadata) (model.Obj, error) {
+func (d *QuarkOpen) RapidUpload(ctx context.Context, dstDir model.Obj, hash model.FileHashMetadataReq) (model.Obj, error) {
 	if hash.ProofCode == "" {
 		return nil, errors.New("proof_code is required for quark_open rapid upload")
 	}
@@ -29,7 +29,7 @@ func (d *QuarkOpen) RapidUpload(ctx context.Context, dstDir model.Obj, hash mode
 		"file_name":       hash.Name,
 		"size":            hash.Size,
 		"format_type":     "application/octet-stream",
-		"md5":             hex.EncodeToString(hash.MD5),
+		"md5":             hash.MD5,
 		"sha1":            hex.EncodeToString(hash.SHA1),
 		"l_created_at":    now.UnixMilli(),
 		"l_updated_at":    now.UnixMilli(),

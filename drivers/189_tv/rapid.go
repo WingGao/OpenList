@@ -2,15 +2,14 @@ package _189_tv
 
 import (
 	"context"
-	"encoding/hex"
 	"fmt"
 
 	"github.com/OpenListTeam/OpenList/v4/internal/model"
 	"github.com/pkg/errors"
 )
 
-func (y *Cloud189TV) RapidUpload(ctx context.Context, dstDir model.Obj, hash model.FileHashMetadata) (model.Obj, error) {
-	fileMd5 := hex.EncodeToString(hash.MD5)
+func (y *Cloud189TV) RapidUpload(ctx context.Context, dstDir model.Obj, hash model.FileHashMetadataReq) (model.Obj, error) {
+	fileMd5 := hash.MD5
 	if len(fileMd5) == 0 {
 		return nil, errors.New("invalid hash")
 	}

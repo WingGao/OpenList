@@ -10,7 +10,7 @@ import (
 	"github.com/pkg/errors"
 )
 
-func (d *Yun139) RapidUpload(ctx context.Context, dstDir model.Obj, hash model.FileHashMetadata) (model.Obj, error) {
+func (d *Yun139) RapidUpload(ctx context.Context, dstDir model.Obj, hash model.FileHashMetadataReq) (model.Obj, error) {
 	if len(hash.SHA256) == 0 {
 		return nil, errors.New("sha256 is required for 139 rapid upload")
 	}
